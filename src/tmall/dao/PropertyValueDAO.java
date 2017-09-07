@@ -146,6 +146,7 @@ public class PropertyValueDAO {
 				propertyValue.setValue(rs.getString(4));
 				propertyValue.setProduct(new ProductDAO().get(pid));
 				propertyValue.setProperty(new PropertyDAO().get(ptid));
+
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
