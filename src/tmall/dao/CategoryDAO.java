@@ -59,7 +59,7 @@ public class CategoryDAO {
 	 */
 	public void delete(int id) {
 		try (Connection c = DBUtil.getConnection(); Statement s = c.createStatement();) {
-			String sql = "DELETE FROM category c WHERE c.id = " + id;
+			String sql = "DELETE FROM category WHERE id = " + id;
 			s.execute(sql);
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -178,5 +178,4 @@ public class CategoryDAO {
 		}
 		return total;
 	}
-
 }

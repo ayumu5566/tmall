@@ -60,7 +60,7 @@ public class PropertyDAO {
 	 */
 	public void delete(int id) {
 		try (Connection c = DBUtil.getConnection(); Statement s = c.createStatement();) {
-			String sql = "DELETE FROM property p WHERE p.id = " + id;
+			String sql = "DELETE FROM property WHERE id = " + id;
 			s.execute(sql);
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -214,5 +214,33 @@ public class PropertyDAO {
 			e.printStackTrace();
 		}
 		return beans;
+	}
+
+	/**
+	 * 查询指定分类属性个数
+	 * 
+	 * @author ZhanShiLun
+	 * @date 2017年9月14日 下午4:19:02
+	 * @param cid
+	 *            分类ID
+	 * @return
+	 */
+	public int getCountByCategory(int cid) {
+		int count = 0;
+		String sql = "SELECT count(1) FROM property p where p.cid = ?";
+		try (Connection c = DBUtil.getConnection(); PreparedStatement ps = c.prepareStatement(sql);) {
+
+			ps.setInt(1, cid);
+
+			ps.execute();
+
+			ResultSet rs = ps.executeQuery();
+			while (rs.next()) {
+				count = rs.getInt(1);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return count;
 	}
 }
