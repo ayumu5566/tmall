@@ -3,6 +3,8 @@ package tmall.bean;
 import java.util.Date;
 import java.util.List;
 
+import tmall.dao.OrderDAO;
+
 /**
  * 订单
  * 
@@ -95,6 +97,40 @@ public class Order {
 	 * 订单总数量
 	 */
 	private int totalNumber;
+
+	/**
+	 * 获取订单状态名称
+	 * 
+	 * @author ZhanShiLun
+	 * @date 2017年9月18日 上午11:39:08
+	 * @return 订单状态名称
+	 */
+	public String getStatusDesc() {
+		String desc = "未知";
+		switch (status) {
+		case OrderDAO.waitPay:
+			desc = "待付款";
+			break;
+		case OrderDAO.waitDelivery:
+			desc = "待发货";
+			break;
+		case OrderDAO.waitConfirm:
+			desc = "待收货";
+			break;
+		case OrderDAO.waitReview:
+			desc = "等评价";
+			break;
+		case OrderDAO.finish:
+			desc = "完成";
+			break;
+		case OrderDAO.delete:
+			desc = "刪除";
+			break;
+		default:
+			desc = "未知";
+		}
+		return desc;
+	}
 
 	/**
 	 * 获取订单ID

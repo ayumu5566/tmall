@@ -61,7 +61,7 @@ public class ProductDAO {
 	 */
 	public void delete(int id) {
 		try (Connection c = DBUtil.getConnection(); Statement s = c.createStatement();) {
-			String sql = "DELETE FROM product p WHERE p.id = " + id;
+			String sql = "DELETE FROM product WHERE id = " + id;
 			s.execute(sql);
 		} catch (SQLException e) {
 			e.printStackTrace();

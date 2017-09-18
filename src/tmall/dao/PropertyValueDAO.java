@@ -146,7 +146,6 @@ public class PropertyValueDAO {
 				propertyValue.setValue(rs.getString(4));
 				propertyValue.setProduct(new ProductDAO().get(pid));
 				propertyValue.setProperty(new PropertyDAO().get(ptid));
-
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -239,11 +238,11 @@ public class PropertyValueDAO {
 		List<Property> pts = new PropertyDAO().list(product.getCategory().getId());
 
 		for (Property pt : pts) {
-			PropertyValue pv = get(pt.getId(), product.getId());
+			PropertyValue pv = get(product.getId(), pt.getId());
 			if (null == pv) {
 				pv = new PropertyValue();
-				pv.setProduct(product);
-				pv.setProperty(pt);
+				pv.setPid(product.getId());
+				pv.setPtid(pt.getId());
 				this.add(pv);
 			}
 		}

@@ -71,7 +71,7 @@ public class ProductImageDAO {
 	 */
 	public void delete(int id) {
 		try (Connection c = DBUtil.getConnection(); Statement s = c.createStatement();) {
-			String sql = "DELETE FROM productimage pi WHERE pi.id = " + id;
+			String sql = "DELETE FROM productimage WHERE id = " + id;
 			s.execute(sql);
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -142,7 +142,7 @@ public class ProductImageDAO {
 			ps.setInt(1, product.getId());
 			ps.setString(2, type);
 			ps.setInt(3, start);
-			ps.setInt(2, count);
+			ps.setInt(4, count);
 
 			ps.execute();
 

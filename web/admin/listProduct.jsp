@@ -7,15 +7,9 @@
 <script>
 	$(function() {
 		$("#addForm").submit(function() {
-			if (checkEmpty("name", "产品名称"))
-				return true;
-			if (checkEmpty("subTitle", "产品小标题"))
-				return true;
-			if (checkNumber("orignalPrice", "原始价格"))
-				return true;
-			if (checkNumber("promotePrice", "优惠价格"))
-				return true;
-			if (checkInt("stock", "库存"))
+			if (checkEmpty("name", "产品名称") && checkEmpty("subTitle", "产品小标题") 
+					&& checkNumber("orignalPrice", "原始价格") && checkNumber("promotePrice", "优惠价格")
+					&& checkInt("stock", "库存"))
 				return true;
 			return false;
 		});
@@ -43,6 +37,7 @@
 					<th>优惠价格</th>
 					<th>库存数量</th>
 					<th>图片管理</th>
+					<th>设置属性</th>
 					<th>编辑</th>
 					<th>删除</th>
 				</tr>
@@ -51,15 +46,24 @@
 				<c:forEach items="${products}" var="p">
 					<tr>
 						<td>${p.id}</td>
-						<td></td>
+						<td>
+							<c:if test="${!empty p.firstProductImage}">
+	                            <img width="40px" src="img/productSingle/${p.firstProductImage.id}.jpg">
+	                        </c:if>
+						</td>
 						<td>${p.name}</td>
 						<td>${p.subTitle}</td>
 						<td>${p.orignalPrice}</td>
 						<td>${p.promotePrice}</td>
 						<td>${p.stock}</td>
 						<td>
-							<a href="">
-								<span class="glyphicon glyphicon-edit"></span>
+							<a href="admin_productImage_list?pid=${p.id}">
+								<span class="glyphicon glyphicon-picture"></span>
+							</a>
+						</td>
+						<td>
+							<a href="admin_product_editPropertyValue?pid=${p.id}">
+								<span class="glyphicon glyphicon-th-list"></span>
 							</a>
 						</td>
 						<td>

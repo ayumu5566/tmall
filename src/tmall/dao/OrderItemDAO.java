@@ -250,7 +250,7 @@ public class OrderItemDAO {
 	 * @return
 	 */
 	public List<OrderItem> listByOrder(int oid) {
-		return listByUser(oid, 0, Short.MAX_VALUE);
+		return listByOrder(oid, 0, Short.MAX_VALUE);
 	}
 
 	/**
